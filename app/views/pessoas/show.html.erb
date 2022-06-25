@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Resumo</h5>
+    <%= link_to "Nova importação", pessoas_path, class: 'btn btn-sm btn-success btn-novo' %>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Quantidade de registros contidas no lote
+        <span class="badge badge-primary badge-pill"><%= @response[:total] %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Receita bruta total
+        <span class="badge badge-primary badge-pill"><%= number_to_currency(@response[:receita], :unit => "R$ ") %></span>
+      </li>
+    </ul>
+
+
+    <table class="table table-striped">
+      <thead>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Adress</th>
+      <th>CPF</th>
+      </thead>
+      <% @pessoas.each do |pessoa| %>
+        <tr>
+          <td><%= pessoa.name %></td>
+          <td><%= pessoa.age %></td>
+          <td><%= pessoa.adress %></td>
+          <td><%= pessoa.cpf %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

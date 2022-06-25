@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Importar</h5>
+    <p class="card-text">
+      <% if flash[:notice].present? %>
+      <div class="alert alert-warning" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+
+    <%= form_tag pessoas_path, multipart: true do %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="row">
+        <div class="col-sm">
+          <p>
+            Selecione o arquivo para importar
+          </p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm">
+
+
+          <div class="form-group">
+            <%= file_field_tag 'arquivo', :required => true  %>
+            <small id="emailHelp" class="form-text text-muted">Extensão permitida .txt</small>
+          </div>
+
+
+          <%= submit_tag 'Importar', class: 'btn btn-info' %>
+        </div>
+      </div>
+
+
+    <% end %>
+    </p>
+  </div>
+</div>
